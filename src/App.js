@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import './App.css';
 import Alert from './component/Alert';
-// import About from './component/About';
+import About from './component/About';
 import Navbar from './component/Navbar';
 import TextForm from './component/TextForm';
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 
 
 function App() {
@@ -26,23 +32,33 @@ function App() {
       setMode('dark')
       document.body.style.backgroundColor = 'grey';
       showAlert("Dark Mode has been Enabled", "success")
+      document.title = 'New App'
     }
     else {
       setMode('light')
       document.body.style.backgroundColor = 'white';
       showAlert("Light Mode has been Enabled", "success")
+      document.title = 'New React App'
     }
   }
 
   return (
     <>
-      <Navbar title="Berry" mode={mode} toggleMode={toggleMode} />
-      <Alert alert={alert} />
-      <div className="container my-3">
-        <TextForm showAlert={showAlert} heading="Enter The Text to Analyze Below" mode={mode} />
-        {/* <About/>    */}
-      </div>
-    </>
+      <Router>
+        <Navbar title="Berry" aboutText="About" mode={mode} toggleMode={toggleMode} />
+        <Alert alert={alert} />
+        <div className="container my-3">
+           <Switch>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/">
+          <TextForm showAlert={showAlert} heading="Enter The Text to Analyze Below" mode={mode} />
+          </Route>
+        </Switch>
+        </div>
+      </Router>
+      </>
   );
 }
 
