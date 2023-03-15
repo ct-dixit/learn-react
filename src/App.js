@@ -5,11 +5,6 @@ import About from "./component/About";
 import Navbar from "./component/Navbar";
 import TextForm from "./component/TextForm";
 
-import {
-  BrowserRouter as Router,
-  Route,
-} from "react-router-dom";
-
 function App() {
   const [mode, setMode] = useState("light");
   const [alert, setAlert] = useState(null); // object
@@ -40,7 +35,6 @@ function App() {
 
   return (
     <>
-      <Router>
         <Navbar
           title="Berry"
           aboutText="About"
@@ -49,18 +43,14 @@ function App() {
         />
         <Alert alert={alert} />
         <div className="container my-3">
-          <Route path="/about">
             <About />
-          </Route>
-          <Route path="/">
+         
           <TextForm
                 showAlert={showAlert}
                 heading="Enter The Text to Analyze Below"
                 mode={mode}
               />
-          </Route>
         </div>
-      </Router>
     </>
   );
 }
