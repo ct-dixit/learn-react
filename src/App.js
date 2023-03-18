@@ -21,17 +21,28 @@ function App() {
     }, 1000);
   };
 
-  const toggleMode = () => {
+  const removeBodyClasses = () => {
+    document.body.classList.remove('bg-light')
+    document.body.classList.remove('bg-primary')
+    document.body.classList.remove('bg-warning')
+    document.body.classList.remove('bg-danger')
+    document.body.classList.remove('bg-success')
+  }
+
+  const toggleMode = (cls) => {
+    removeBodyClasses();
+    console.log(cls)
+    document.body.classList.add('bg-'+cls)
     if (mode === "light") {
       setMode("dark");
       document.body.style.backgroundColor = "grey";
       showAlert("Dark Mode has been Enabled", "success");
-      document.title = "New App";
+      // document.title = "New App";
     } else {
       setMode("light");
       document.body.style.backgroundColor = "white";
       showAlert("Light Mode has been Enabled", "success");
-      document.title = "New React App";
+      // document.title = "New React App";
     }
   };
 
@@ -47,7 +58,7 @@ function App() {
         <Alert alert={alert} />
         <div className="container my-3">
           <Routes>
-            <Route path="/about" element={<About />} />
+            <Route path="/about" element={<About mode={mode} />} />
             <Route path="/" element={<TextForm
                 showAlert={showAlert}
                 heading="Enter The Text to Analyze Below"

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
 export default function TextForm(props) {
+
+
   const [Text, setText] = useState("");
   const handleUpClick = () => {
     let newText = Text.toUpperCase();
@@ -51,16 +53,16 @@ export default function TextForm(props) {
             rows="10"
           ></textarea>
         </div>
-        <button className="btn btn-primary mx-2" onClick={handleUpClick}>
+        <button disabled={Text.length === 0} className="btn btn-primary mx-2 my-1" onClick={handleUpClick}>
           Convert to Uppercase
         </button>
-        <button className="btn btn-primary mx-2" onClick={handleLoClick}>
+        <button disabled={Text.length === 0} className="btn btn-primary mx-2 my-1" onClick={handleLoClick}>
           Convert to Lowercase
         </button>
-        <button className="btn btn-primary mx-2" onClick={handleCopy}>
+        <button disabled={Text.length === 0} className="btn btn-primary mx-2 my-1" onClick={handleCopy}>
           Copy Text
         </button>
-        <button className="btn btn-primary mx-2" onClick={handleExtraSpaces}>
+        <button disabled={Text.length === 0} className="btn btn-primary mx-2 my-1" onClick={handleExtraSpaces}>
           Remove Extra Spaces
         </button>
       </div>
@@ -70,9 +72,9 @@ export default function TextForm(props) {
       >
         <h2>Your text summary</h2>
         <p>
-          {Text.split(" ").length} words and {Text.length} characters
+          {Text.split(" ").filter((element)=>{return element.length!== 0}).length} words and {Text.length} characters
         </p>
-        <p>{0.008 * Text.split(" ").length} Minutes to Read</p>
+        <p>{0.008 * Text.split(" ").filter((element)=>{return element.length!== 0}).length} Minutes to Read</p>
         <h2>Preview</h2>
         <p>{Text.length > 0 ? Text : "Enter Text above textBox "}</p>
       </div>
