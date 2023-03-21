@@ -72,7 +72,9 @@ export default function TextForm(props) {
       >
         <h2>Your text summary</h2>
         <p>
-          {Text.split(" ").filter((element)=>{return element.length!== 0}).length} words and {Text.length} characters
+
+          {/* /\s+/   this is back space in after under line write text to count work other wise none */}
+          {Text.split(/\s+/).filter((element)=>{return element.length!== 0}).length} words and {Text.length} characters
         </p>
         <p>{0.008 * Text.split(" ").filter((element)=>{return element.length!== 0}).length} Minutes to Read</p>
         <h2>Preview</h2>
